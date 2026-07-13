@@ -4,17 +4,14 @@ import time
 import random
 from email.message import EmailMessage
 
-# ==================== CONFIGURAÇÃO ====================
 TARGET_IP = "192.168.122.23"
 SMTP_PORT = 25
 IMAP_PORT = 143
 
 USER_EMAIL = "admin@lab.local"
 USER_PASS = "senha123"
-# ======================================================
 
 def acao_enviar_email():
-    "Simula um funcionário enviando um relatório em texto claro."
     try:
         msg = EmailMessage()
         msg.set_content(f"Relatório de atividades fundamental. Timestamp: {time.time()}")
@@ -29,9 +26,7 @@ def acao_enviar_email():
         print(f"[SMTP] Erro: {e}")
 
 def acao_checar_caixa():
-    "Simula a checagem de caixa em texto claro."
     try:
-        # Conexão direta na porta 143 sem STARTTLS
         mail = imaplib.IMAP4(TARGET_IP, IMAP_PORT)
         mail.login(USER_EMAIL, USER_PASS)
         mail.select("inbox")
@@ -41,7 +36,7 @@ def acao_checar_caixa():
     except Exception as e:
         print(f"[IMAP] Erro: {e}")
 
-# ==================== EXECUÇÃO ====================
+# --- EXECUÇÃO ---
 print("Iniciando tráfego de E-mail\n")
 
 for rodada in range(1, 21):
